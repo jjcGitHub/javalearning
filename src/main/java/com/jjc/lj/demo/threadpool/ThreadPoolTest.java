@@ -33,6 +33,7 @@ public class ThreadPoolTest {
                 }
             });
         }
+
         executorService.shutdown();
         executorService.awaitTermination(1, TimeUnit.DAYS);
         Long end = System.currentTimeMillis();

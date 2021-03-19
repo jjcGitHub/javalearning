@@ -1,7 +1,10 @@
 package com.jjc.lj.demo.threadpool;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: demo
@@ -22,8 +25,13 @@ public class ThreadPoolDemo {
         ExecutorService executorService2 = Executors.newFixedThreadPool(10);
         ExecutorService executorService3 = Executors.newSingleThreadExecutor();
 
+        //自定义线程池
+        ThreadPoolExecutor executor = new ThreadPoolExecutor
+                (10,20,0L, TimeUnit.MILLISECONDS,new ArrayBlockingQueue<Runnable>(10));
+
+
         for (int i =0;i<100;++i){
-            executorService3.execute(new myTask(i));
+            executor.execute(new myTask(i));
         }
     }
 }
